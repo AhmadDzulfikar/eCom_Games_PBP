@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.checked {
+    color: orange;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<h1>{{ title }}</h1>
+
+<h5>{{ name_owner }}</h5>
+<h5>{{ class }}</h5>
+
+
+<table>
+  <tr>
+    <th>Game Title</th>
+    <th>Rating</th>
+    <th>Price</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>{{ name }}</td>
+    <td><span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <!-- <span class="fa fa-star"></span> -->
+    </td>
+    <td>${{ price }}</td>
+    <td>{{ Description }}</td>
+  </tr>
+  <tr>
+    <td>God of War: Last Boss</td>
+    <td><span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <!-- <span class="fa fa-star"></span> -->
+    </td>
+    <td>$31</td>
+    <td>Players control Kratos, a Spartan warrior who is sent by the Greek gods to kill Ares, the god of war. </td>
+  </tr>
+  <tr>
+    <td>Concord</td>
+    <td><span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <!-- <span class="fa fa-star"></span> -->
+    </td>
+    <td>$40</td>
+    <td>Trash Game, xixiixix. RIP </td>
+  </tr>
+  <tr>
+    <td>Mobile Legend: Bang Bang</td>
+    <td><span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <!-- <span class="fa fa-star"></span> -->
+    </td>
+    <td>$0</td>
+    <td>Kalah RTO jir, kalo menang ratingnya 5 bintang</td>
+  </tr>
+  <tr>
+    <td>Minecraft: Java Edition</td>
+    <td><span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <!-- <span class="fa fa-star"></span> -->
+    </td>
+    <td>$20</td>
+    <td>A blocky, open-world sandbox video game where players explore, build, and survive in a 3D world</td>
+  </tr>
+  <tr>
+    <td>Roblox</td>
+    <td>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <!-- <span class="fa fa-star"></span> -->
+    </td>
+    <td>$0</td>
+    <td>HANYA UNTUK ANAK-ANAK!!!!!!!!!!!!!!!!!!!!!!!!!!</td>
+  </tr>
+</table>
+
+</body>
+</html>
+
