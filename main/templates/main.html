@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,7 +16,7 @@
         header {
             background: url('https://source.unsplash.com/1600x900/?video-games') no-repeat center center/cover;
             height: 250px;
-            color: white;
+            color: black;
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -186,7 +186,7 @@
                 <span class="fa fa-star"></span>
             </td>
             <td>$0</td>
-            <td class="description">HANYA UNTUK ANAK-ANAK!!!!!!!!!!!!!!!!!!!!!!!!!!</td>
+            <td class="description">Game for kids</td>
         </tr>
     </table>
 
@@ -196,6 +196,262 @@
 <footer>
     &copy; 2024 Game Store | All rights reserved.
 </footer>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        
+        header {
+            background: url('https://source.unsplash.com/1600x900/?video-games') no-repeat center center/cover;
+            height: 250px;
+            color: black;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+
+        header h5 {
+            margin: 0;
+            font-weight: normal;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+            cursor: pointer;
+        }
+
+        .fa-star {
+            font-size: 20px;
+        }
+
+        .checked {
+            color: orange;
+        }
+
+        .btn-buy {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .btn-buy:hover {
+            background-color: #45a049;
+        }
+
+        .description {
+            text-align: left;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+        }
+
+        /* Canvas untuk game */
+        #flappyBirdGame {
+            display: none;
+            border: 1px solid #000;
+            background-color: #70c5ce;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>{{ title }}</h1>
+    <h5>{{ name_owner }}</h5>
+    <h5>{{ class }}</h5>
+</header>
+
+<div class="container">
+    <table>
+        <tr>
+            <th>Game Title</th>
+            <th>Rating</th>
+            <th>Price</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>{{ name }}</td>
+            <td>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+            </td>
+            <td>${{ price }}</td>
+            <td class="description">{{ Description }}</td>
+        </tr>
+        <!-- Other rows -->
+    </table>
+
+    <a href="#" class="btn-buy" onclick="startGame()">Test Game Now</a>
+</div>
+
+<!-- Canvas untuk game Flappy Bird -->
+<canvas id="flappyBirdGame" width="320" height="480"></canvas>
+
+<footer>
+    &copy; 2024 Game Store | All rights reserved.
+</footer>
+
+<script>
+// Fungsi untuk memulai game Flappy Bird
+function startGame() {
+    document.getElementById('flappyBirdGame').style.display = 'block';
+    flappyBird();
+}
+
+function flappyBird() {
+    const canvas = document.getElementById('flappyBirdGame');
+    const ctx = canvas.getContext('2d');
+
+    let bird = { x: 50, y: 150, width: 20, height: 20, gravity: 0.2, lift: -5, velocity: 0 };
+    let pipes = [];
+    let score = 0;
+    let gameOver = false;
+
+    // Tambahkan pipa pertama
+    pipes.push({ x: canvas.width, y: Math.floor(Math.random() * (canvas.height - 100)) });
+
+    // Update loop
+    function update() {
+        if (gameOver) return;
+
+        // Update posisi burung
+        bird.velocity += bird.gravity;
+        bird.y += bird.velocity;
+
+        // Tambahkan logika melompat
+        if (bird.y + bird.height > canvas.height || bird.y < 0) {
+            gameOver = true;
+        }
+
+        // Gerakkan pipa dan tambahkan pipa baru
+        for (let i = 0; i < pipes.length; i++) {
+            pipes[i].x -= 2;
+
+            // Tambahkan pipa baru ketika yang lama hampir keluar dari canvas
+            if (pipes[i].x === canvas.width / 2) {
+                pipes.push({ x: canvas.width, y: Math.floor(Math.random() * (canvas.height - 100)) });
+            }
+
+            // Cek tabrakan dengan pipa
+            if (bird.x < pipes[i].x + 20 && bird.x + bird.width > pipes[i].x && (bird.y < pipes[i].y || bird.y + bird.height > pipes[i].y + 100)) {
+                gameOver = true;
+            }
+
+            // Hapus pipa jika sudah keluar dari layar
+            if (pipes[i].x < -20) {
+                pipes.splice(i, 1);
+                score++;
+            }
+        }
+
+        draw();
+    }
+
+    // Fungsi untuk menggambar burung dan pipa
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Gambar burung
+        ctx.fillStyle = "yellow";
+        ctx.fillRect(bird.x, bird.y, bird.width, bird.height);
+
+        // Gambar pipa
+        for (let i = 0; i < pipes.length; i++) {
+            ctx.fillStyle = "green";
+            ctx.fillRect(pipes[i].x, 0, 20, pipes[i].y);
+            ctx.fillRect(pipes[i].x, pipes[i].y + 100, 20, canvas.height - pipes[i].y);
+        }
+
+        // Gambar skor
+        ctx.fillStyle = "black";
+        ctx.font = "16px Arial";
+        ctx.fillText("Score: " + score, 10, 20);
+
+        if (gameOver) {
+            ctx.fillStyle = "red";
+            ctx.font = "24px Arial";
+            ctx.fillText("Game Over", canvas.width / 2 - 60, canvas.height / 2);
+        }
+    }
+
+    // Fungsi untuk burung melompat
+    document.addEventListener("keydown", function (e) {
+        if (e.key === " " && !gameOver) {
+            bird.velocity = bird.lift;
+        }
+    });
+
+    // Main loop
+    function gameLoop() {
+        update();
+        if (!gameOver) {
+            requestAnimationFrame(gameLoop);
+        }
+    }
+
+    gameLoop();
+}
+</script>
 
 </body>
 </html>

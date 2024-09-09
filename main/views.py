@@ -7,7 +7,7 @@ def show_main(request):
         'class': 'PBP D',
 
         'title': 'DZOELFIEKAR GAME STORE',
-        'name': 'Wukong: Black Myth',
+        'name': 'Flappy Box',
         'price' : '24',
         'Description': 'The game is inspired by the classical Chinese novel Journey to the West and follows an anthropomorphic monkey based on the character of Sun Wukong from the novel.'
     }
