@@ -1,118 +1,201 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-.checked {
-    color: orange;
-}
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        
+        header {
+            background: url('https://source.unsplash.com/1600x900/?video-games') no-repeat center center/cover;
+            height: 250px;
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
+        header h1 {
+            font-size: 3em;
+            margin: 0;
+        }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-</style>
+        header h5 {
+            margin: 0;
+            font-weight: normal;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+            cursor: pointer;
+        }
+
+        .fa-star {
+            font-size: 20px;
+        }
+
+        .checked {
+            color: orange;
+        }
+
+        .btn-buy {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .btn-buy:hover {
+            background-color: #45a049;
+        }
+
+        .description {
+            text-align: left;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+        }
+    </style>
 </head>
 <body>
 
-<h1>{{ title }}</h1>
+<header>
+    <h1>{{ title }}</h1>
+    <h5>{{ name_owner }}</h5>
+    <h5>{{ class }}</h5>
+</header>
 
-<h5>{{ name_owner }}</h5>
-<h5>{{ class }}</h5>
+<div class="container">
+    <table>
+        <tr>
+            <th>Game Title</th>
+            <th>Rating</th>
+            <th>Price</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>{{ name }}</td>
+            <td>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+            </td>
+            <td>${{ price }}</td>
+            <td class="description">{{ Description }}</td>
+        </tr>
+        <tr>
+            <td>God of War: Last Boss</td>
+            <td>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+            </td>
+            <td>$31</td>
+            <td class="description">Players control Kratos, a Spartan warrior who is sent by the Greek gods to kill Ares, the god of war.</td>
+        </tr>
+        <tr>
+            <td>Concord</td>
+            <td>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+            </td>
+            <td>$40</td>
+            <td class="description">Trash Game, xixiixix. RIP</td>
+        </tr>
+        <tr>
+            <td>Mobile Legend: Bang Bang</td>
+            <td>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+            </td>
+            <td>$0</td>
+            <td class="description">Kalah RTO jir, kalo menang ratingnya 5 bintang</td>
+        </tr>
+        <tr>
+            <td>Minecraft: Java Edition</td>
+            <td>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+            </td>
+            <td>$20</td>
+            <td class="description">A blocky, open-world sandbox video game where players explore, build, and survive in a 3D world</td>
+        </tr>
+        <tr>
+            <td>Roblox</td>
+            <td>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+            </td>
+            <td>$0</td>
+            <td class="description">HANYA UNTUK ANAK-ANAK!!!!!!!!!!!!!!!!!!!!!!!!!!</td>
+        </tr>
+    </table>
 
+    <a href="#" class="btn-buy">Buy Now</a>
+</div>
 
-<table>
-  <tr>
-    <th>Game Title</th>
-    <th>Rating</th>
-    <th>Price</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td>{{ name }}</td>
-    <td><span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <!-- <span class="fa fa-star"></span> -->
-    </td>
-    <td>${{ price }}</td>
-    <td>{{ Description }}</td>
-  </tr>
-  <tr>
-    <td>God of War: Last Boss</td>
-    <td><span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <!-- <span class="fa fa-star"></span> -->
-    </td>
-    <td>$31</td>
-    <td>Players control Kratos, a Spartan warrior who is sent by the Greek gods to kill Ares, the god of war. </td>
-  </tr>
-  <tr>
-    <td>Concord</td>
-    <td><span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <!-- <span class="fa fa-star"></span> -->
-    </td>
-    <td>$40</td>
-    <td>Trash Game, xixiixix. RIP </td>
-  </tr>
-  <tr>
-    <td>Mobile Legend: Bang Bang</td>
-    <td><span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <!-- <span class="fa fa-star"></span> -->
-    </td>
-    <td>$0</td>
-    <td>Kalah RTO jir, kalo menang ratingnya 5 bintang</td>
-  </tr>
-  <tr>
-    <td>Minecraft: Java Edition</td>
-    <td><span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <!-- <span class="fa fa-star"></span> -->
-    </td>
-    <td>$20</td>
-    <td>A blocky, open-world sandbox video game where players explore, build, and survive in a 3D world</td>
-  </tr>
-  <tr>
-    <td>Roblox</td>
-    <td>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <!-- <span class="fa fa-star"></span> -->
-    </td>
-    <td>$0</td>
-    <td>HANYA UNTUK ANAK-ANAK!!!!!!!!!!!!!!!!!!!!!!!!!!</td>
-  </tr>
-</table>
+<footer>
+    &copy; 2024 Game Store | All rights reserved.
+</footer>
 
 </body>
 </html>
-
