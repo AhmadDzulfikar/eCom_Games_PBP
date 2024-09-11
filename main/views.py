@@ -6,7 +6,7 @@ def show_main(request):
         'name_owner': 'Ahmad Dzulfikar As Shavy',
         'class': 'PBP D',
 
-        'title': 'DZOELFIEKAR GAME STORE',
+        'title': 'PlayStation Plaza',
         'name': 'Flappy Box',
         'price' : '24',
         'Description': 'The game is inspired by the classical Chinese novel Journey to the West and follows an anthropomorphic monkey based on the character of Sun Wukong from the novel.'
