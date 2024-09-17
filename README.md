@@ -1,4 +1,4 @@
-﻿# The Games Shop!
+![Screenshot 2024-09-17 185300](https://github.com/user-attachments/assets/f37d378e-613d-447b-a608-fc49d9d5cc60)![Screenshot 2024-09-17 185300](https://github.com/user-attachments/assets/f37d378e-613d-447b-a608-fc49d9d5cc60)﻿# The Games Shop!
 🔗 Link PWS: http://ahmad-dzulfikar31-ecomgames.pbp.cs.ui.ac.id/
 ## Tutorial Membuat Proyek django
 #### Mengaktifkan Environment
@@ -210,9 +210,22 @@ path('json/<str:id>/', show_json_by_id, name='show_json_by_id'),
 ```
 
 ## Mengakses keempat URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md.
-### JSON
+### XML ALL
+![Screenshot 2024-09-17 185207](https://github.com/user-attachments/assets/66c53361-54d0-4480-b521-56f8f8051c81)
+
+### JSON ALL
 ![Screenshot 2024-09-17 185022](https://github.com/user-attachments/assets/8d389f70-058d-4735-b3be-501f69999ee4)
-![Screenshot 2024-09-17 185022](https://github.com/user-attachments/assets/8d389f70-058d-4735-b3be-501f69999ee4)
+
+### XML by ID
+![Screenshot 2024-09-17 185300](https://github.com/user-attachments/assets/2c9671c5-739a-4167-b40a-f5456d904b27)
+
+### JSON by ID
+![Screenshot 2024-09-17 185348](https://github.com/user-attachments/assets/a2f89f61-2df4-4432-818d-618c06e0b228)
+
+
+
+
+
 
 
 
