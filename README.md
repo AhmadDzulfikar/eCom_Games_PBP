@@ -171,7 +171,7 @@ def show_xml(request):
     data = MoodEntry.objects.all()
     return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
 ```
-#### Format JSON
+#### b.) Format JSON
 Buat fungsi `show_json` di dalam `views.py` yang ada di direktori `main` yang berfungsi menyimpan hasil query.
 ```
 def show_json(request):
@@ -183,6 +183,32 @@ def show_json(request):
     data = Product.objects.all()
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 ```
+#### b.) Format XML by ID & JSON by ID
+Buatlah fungsi baru yang menerima parameter request dan id di `views.py`
+### XML
+```
+def show_xml_by_id(request, id):
+    data = MoodEntry.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+```
+
+### JSON
+```
+def show_json_by_id(request, id):
+    data = MoodEntry.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+```
+Tambahkan import pada `urls.py` di direktori `main`
+`from main.views import show_main, create_mood_entry, show_xml, show_json, show_xml_by_id, show_json_by_id`
+
+dan tambahkan path URL di `urlpatterns` 
+```
+...
+path('xml/<str:id>/', show_xml_by_id, name='show_xml_by_id'),
+path('json/<str:id>/', show_json_by_id, name='show_json_by_id'),
+...
+```
+
 
 
 
