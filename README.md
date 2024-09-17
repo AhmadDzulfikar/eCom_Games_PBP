@@ -209,6 +209,12 @@ path('json/<str:id>/', show_json_by_id, name='show_json_by_id'),
 ...
 ```
 
+## Mengakses keempat URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md.
+### JSON
+![Screenshot 2024-09-17 185022](https://github.com/user-attachments/assets/8d389f70-058d-4735-b3be-501f69999ee4)
+![Screenshot 2024-09-17 185022](https://github.com/user-attachments/assets/8d389f70-058d-4735-b3be-501f69999ee4)
+
+
 
 
 
