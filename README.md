@@ -1,4 +1,4 @@
-![Screenshot 2024-09-17 185300](https://github.com/user-attachments/assets/f37d378e-613d-447b-a608-fc49d9d5cc60)![Screenshot 2024-09-17 185300](https://github.com/user-attachments/assets/f37d378e-613d-447b-a608-fc49d9d5cc60)﻿# The Games Shop!
+﻿# The Games Shop!
 🔗 Link PWS: http://ahmad-dzulfikar31-ecomgames.pbp.cs.ui.ac.id/
 ## Tutorial Membuat Proyek django
 #### Mengaktifkan Environment
