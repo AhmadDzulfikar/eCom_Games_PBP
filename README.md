@@ -61,6 +61,132 @@ Framework django sering dijadikan permulaan belajar perangkat lunak karna dapat 
 ## 🔑 Mengapa model pada Django disebut ORM (Object-Relational Mapping)?
 Model Django disebut Object Relational Mapping (ORM) karena Django memetakan model-model python ke dalam tabel-tabel dalam database dan membuat pengembang tidak perlu menulis kueri SQL secara langsung. Pengembang dapat dengan mudah mengakses dan memanipulasi data sehingga mempercepat proses pengembangan perangkat lunak.
 
+# README.MD UNTUK TUGAS KE-3
+## Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
+Platform bertindak sebagai fondasi untuk berbagai aplikasi, perangkat, atau apapun layanan yang digunakan oleh user, oleh karena itu data delivery digunakan untuk pengimplementasiannya. Platform biasanya terdiri dari database, server, frontend, dan data delivery memungkinkan komunikasi antar komponen ini, sehingga informasi yang dihasilkan oleh satu elemen dapat diteruskan dengan tepat ke elemen lainnya.
+
+## Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
+Menurut saya lebih baik JSON dibandingkan dengan XML dengan berbagai macam alasan. Alasan pertama adalah struktur data dari JSON lebih lebih sederhana dan lebih mudah kebaca, sebagai contoh:
+JSON:
+```
+{
+    "name": "John",
+    "age": 30
+}
+```
+
+XML:
+```
+<person>
+    <name>John</name>
+    <age>30</age>
+</person>
+```
+Selain itu, karena JSON tidak menggunakan tag penutup dan sintaksnya lebih sederhana, JSON biasanya menghasilkan payload yang lebih kecil dari XML. Alasan mengapa JSON lebih populer dan lebih banyak digunakan ketimbang XML adalah karena lebih ringan, lebih cepat diproses, dan lebih mudah digunakan dalam pengembangan web dan aplikasi mobile.
+
+## Jelaskan fungsi dari method is_valid() pada form Django dan mengapa kita membutuhkan method tersebut?
+Method `is_valid` sangat penting dalam proses validasi form sebelum data disimpan atau diproses lebih lanjut. Salah satu fungsi dari `is_valid` adalah memeriksa validitas data saat form dikirimkan, data input dari pengguna harus diperiksa apakah sesuai dengan aturan validasi yang diterapkan pada masing-masing field. Kita sangat membutuhkan method `is_valid` dengan berbagai alasan seperti mencegah error pada level aplikasi, validasi data sebelum pemrosesan, dan memudahkan penanganan error.
+
+## Mengapa kita membutuhkan csrf_token saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan csrf_token pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
+
+### Mengapa kita membutuhkan csrf_token saat membuat form di Django?
+Dengan `csrf_token` kita dapat melindungi dari serangan CSRF karena `csrf_token` membantu memverifikasi bahwa permintaan yang dikirim dari klien benar-benar berasal dari sumber yang sah.
+
+### Apa yang dapat terjadi jika kita tidak menambahkan csrf_token pada form Django?
+Pengguna Tidak Sengaja Mengirimkan Permintaan Berbahaya Penyerang dapat membuat pengguna mengunjungi halaman web berbahaya yang berisi skrip atau form tersembunyi yang otomatis mengirimkan permintaan ke aplikasi tanpa sepengetahuan pengguna. Contohnya, jika aplikasi web memiliki endpoint untuk menghapus akun atau mentransfer dana, penyerang dapat membuat permintaan POST ke endpoint tersebut.
+
+### Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
+Penyerang dapat membuat halaman web atau email yang mengandung skrip atau elemen tersembunyi yang mengirimkan permintaan berbahaya. Misalnya, dengan menggunakan tag HTML seperti <img>, penyerang dapat memaksa browser korban untuk melakukan permintaan POST ke server target.
+
+##  Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+1.) Hal pertama yang saya lakukan adalah membuat direktori `templates` di direktori utama dan membuat berkas HTML baru bernama `base.html`
+2.) Setelah membuat direktori templates baru, saya langsung mendaftarkan direktori templates tersebut ke `settings.py`
+### 3.) Membuat Input Form
+Dalam membuat form input data, saya membuat file py baru bernama `forms.py` di direktori `main` dengan isi sebagai berikut:
+```
+from django.forms import ModelForm
+from main.models import MoodEntry
+
+class MoodEntryForm(ModelForm):
+    class Meta:
+        model = MoodEntry
+        fields = ["mood", "feelings", "mood_intensity"]
+```
+Lalu membuat fungsi dengan nama `create_product` di halaman `views.py` dengan isi sebagai berikut:
+```
+def create_product(request):
+    form = ProductForm(request.POST or None)
+
+    if form.is_valid() and request.method == "POST":
+        form.save()
+        return redirect('main:show_main')
+
+    context = {'form': form}
+    return render(request, "create_product.html", context)
+```
+Lalu tambahkan path url ke dalam variable `urlpatterns` di `urls.py` di `main`.
+```
+urlpatterns = [
+   ...
+   path('create-mood-entry', create_mood_entry, name='create_mood_entry'),
+]
+```
+Lalu membuat berkas HTML baru untuk templates yang berguna untuk mengirim request ke view 
+```
+{% extends 'base.html' %} 
+{% block content %}
+<h1>Add New Mood Entry</h1>
+
+<form method="POST">
+  {% csrf_token %}
+  <table>
+    {{ form.as_table }}
+    <tr>
+      <td></td>
+      <td>
+        <input type="submit" value="Add Mood Entry" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+{% endblock %}
+```
+Terakhir, tambahkan `{% block content %}` di main.html
+### 4.) Menambahkan 4 fungsi `views`
+#### a.) Format XML
+Import `HttpResponse` dan `serializers` di `views.py`
+```
+from django.http import HttpResponse
+from django.core import serializers
+```
+Buatlah fungsi baru yang bertugas untuk menerima parameter request
+```
+def show_xml(request):
+    data = MoodEntry.objects.all()
+```
+Tambahkan return function berupa `HttpResponse` yang berisi parameter data hasil query
+```
+def show_xml(request):
+    data = MoodEntry.objects.all()
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+```
+#### Format JSON
+Buat fungsi `show_json` di dalam `views.py` yang ada di direktori `main` yang berfungsi menyimpan hasil query.
+```
+def show_json(request):
+    data = Product.objects.all()
+```
+Tambahkan function berupa `HttpResponse` 
+```
+def show_json(request):
+    data = Product.objects.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+```
+
+
+
+
 
 
 
