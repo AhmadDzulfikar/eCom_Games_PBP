@@ -1,5 +1,5 @@
 ﻿# The Games Shop!
-🔗 Link PWS: https://ahmad-dzulfikar31-ecomgames.pbp.cs.ui.ac.id/
+🔗 Link PWS: http://ahmad-dzulfikar31-ecomgames.pbp.cs.ui.ac.id/
 ## Tutorial Membuat Proyek django
 #### Mengaktifkan Environment
 1. Step pertama dari membuat projek django adalah membuat direktori di lokal terlebih dahulu, dan disini nama direktori saya adalah `eCom_Games` dan masuk kedalamnya menggunakan cd di terminal
