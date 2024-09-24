@@ -118,6 +118,22 @@
             transform: translateY(2px);
         }
 
+        .btn-logout {
+            background-color: #f44336; /* Red color for logout */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-size: 1em;
+        }
+
+    .btn-logout:hover {
+        background-color: #e53935; /* Darker red on hover */
+    }
+
+
         footer {
             text-align: center;
             padding: 10px;
@@ -154,8 +170,8 @@
     </a>
 
     <a href="{% url 'main:logout' %}">
-        <button>Logout</button>
-    </a>
+        <button class="btn-logout">Logout</button>
+    </a>    
 
     <h5>Sesi terakhir login: {{ last_login }}</h5>
 </header>
