@@ -394,7 +394,7 @@ USERNAME:
   return response
   ```
 
-  - Kirim data las_loginnya ke show_main
+  - Kirim data last_loginnya ke show_main
   ```
   @login_required(login_url='/login')
 def show_main(request):
