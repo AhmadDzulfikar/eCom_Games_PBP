@@ -435,6 +435,61 @@ def login_user(request):
 ```
 - Last Login `<h5>Sesi terakhir login: {{ last_login }}</h5>`
 
+# README.MD UNTUK TUGAS KE- 5
+## Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
+1.) Inline Style, didefnisikan langsung pada elemen HTML menggunakan style. Contoh: `<div style="color: red;">Text here</div>`
+2.) ID Selector, diterapkan menggunakan ID di HTML, contoh: 
+```
+#myId {
+  color: blue;
+}
+```
+`<div id="myId">Text here</div>`
+3.) Class Selector, semua selector dengan simbol `.`, untuk pseudo seperti `:hover`, atau selector atribut seperti `[type="text"]`.
+4.) Important Rule, dapat memberikan prioritas tertinggi untuk sebuah properti.
+
+## Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design!
+Responsive itu sangat penting dalam mengembangkan aplikasi web karna itu menjamin agar tampilan yang sudah disusun rapih saat mengoding di web bisa terlihat rapih juga ketika kita membukanya di tablet, handphone, dan berbagai macam lainnya. Ini juga berguna agar programmer tidak harus membuat 2 jenis versi terpisah karna ketika sudah membuat yang di web kita juga dapat membukanya di handphone.
+
+Contoh aplikasi yang sudah responsive: Bootstrap documentation, twitter
+Contoh aplikasi yang belum responsive: Web yang dibuat ketika aplikasi mobile belum menjadi tren.
+
+## Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
+Margin: 
+Margin adalah sebuah ruang kosong di luar dari border yang berguna untuk jarak antara elemen-elemen yang ada di web.
+```
+.box {
+  margin: 20px;  /* naIni berguna untuk menambahkan margin 20 piksel di semua sisi elemen */
+}
+```
+
+Border:
+Border adalah garis yang mengelilingi elemen, diantara margin dan padding. Border dapat dihias seperti diberi warna, lebar, dll.
+```
+.box {
+  border: 2px solid black;  /* Border dengan lebar 2 piksel, jenis solid, dan warna hitam */
+}
+```
+
+Padding
+Padding adalah ruang di dalam elemen antara konten dengan border dengan tujuan untuk memberi jarak agar konten tidak menempel langsung dengan batasnya.
+```
+.box {
+  padding: 15px;  /* Menambahkan padding 15 piksel di semua sisi elemen */
+}
+```
+
+## Jelaskan konsep flex box dan grid layout beserta kegunaannya!
+Flex box
+Flexbox adalah modul CSS yang dirancang untuk mengatur tata letak elemen dalam satu dimensi—baik secara horizontal (baris) atau vertikal (kolom). Flexbox berguna untuk membuat tata letak satu dimensi, seperti navbar, baris produk, tombol yang tersusun dalam satu baris, atau komponen-komponen kecil lainnya.
+
+Grid layout
+Grid Layout adalah sistem tata letak yang lebih kompleks dan memungkinkan pengaturan tata letak elemen dalam dua dimensi (baris dan kolom). Kegunaan grid layout untuk membuat tata letak dua dimensi, seperti layout halaman penuh yang memiliki struktur lebih kompleks, misalnya header, sidebar, konten utama, dan footer.
+
+## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step
+
+
+
 
 
 
