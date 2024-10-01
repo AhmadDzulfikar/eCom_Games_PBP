@@ -487,7 +487,7 @@ Grid layout
 Grid Layout adalah sistem tata letak yang lebih kompleks dan memungkinkan pengaturan tata letak elemen dalam dua dimensi (baris dan kolom). Kegunaan grid layout untuk membuat tata letak dua dimensi, seperti layout halaman penuh yang memiliki struktur lebih kompleks, misalnya header, sidebar, konten utama, dan footer.
 
 ## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step
-### Implementasikan fungsi untuk menghapus dan mengedit product.
+### 1. Implementasikan fungsi untuk menghapus dan mengedit product.
 1. Seperti sebelum-sebelumnya, kalau mau menambahkan fitur baru kita harus membuatnya di `views.py`. Buatlah fungsi baru untuk edit dan delete seperti ini:
 Edit:
 ```
@@ -525,6 +525,7 @@ urlpatterns = [
     path('edit-product/<uuid:id>', edit_product, name='edit_product'),
     path('delete/<uuid:id>', delete_product, name='delete_product'), # sesuaikan dengan nama fungsi yang dibuat
 ```
+]
 
 
 
