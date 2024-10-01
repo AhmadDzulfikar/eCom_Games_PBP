@@ -487,7 +487,44 @@ Grid layout
 Grid Layout adalah sistem tata letak yang lebih kompleks dan memungkinkan pengaturan tata letak elemen dalam dua dimensi (baris dan kolom). Kegunaan grid layout untuk membuat tata letak dua dimensi, seperti layout halaman penuh yang memiliki struktur lebih kompleks, misalnya header, sidebar, konten utama, dan footer.
 
 ## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step
+### Implementasikan fungsi untuk menghapus dan mengedit product.
+1. Seperti sebelum-sebelumnya, kalau mau menambahkan fitur baru kita harus membuatnya di `views.py`. Buatlah fungsi baru untuk edit dan delete seperti ini:
+Edit:
+```
+def edit_product(request, id):
+    # Get product entry berdasarkan id
+    product = Product.objects.get(pk = id)
 
+    # Set product entry sebagai instance dari form
+    form = ProductForm(request.POST or None, instance=product)
+
+    if form.is_valid() and request.method == "POST":
+        # Simpan form dan kembali ke halaman awal
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+
+    context = {'form': form}
+    return render(request, "edit_product.html", context)
+```
+
+Delete:
+```
+def delete_product(request, id):
+    # Get mood berdasarkan id
+    mood = Product.objects.get(pk = id)
+    # Hapus mood
+    mood.delete()
+    # Kembali ke halaman awal
+    return HttpResponseRedirect(reverse('main:show_main'))
+```
+2. Setelah membuat fungsi untuk kedua fitur tersebut, selanjutnya kita membuat file html untuk edit yang berguna sebagai tempat atau halaman edit bekerja. Buatlah `create_product.html`.
+3. Tambahkan mereka di `urls.py`, pertama tambahkan import mereka `from main.views import edit_product` & `from main.views import delete_product`, lalu tambahkan mereka di `url_patterns`:
+```
+urlpatterns = [
+...
+    path('edit-product/<uuid:id>', edit_product, name='edit_product'),
+    path('delete/<uuid:id>', delete_product, name='delete_product'), # sesuaikan dengan nama fungsi yang dibuat
+```
 
 
 
