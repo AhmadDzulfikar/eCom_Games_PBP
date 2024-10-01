@@ -188,6 +188,11 @@
                     Edit
                 </button>
             </a>
+            <a href="{% url 'main:delete_product' product.pk %}">
+                <button>
+                    Delete
+                </button>
+            </a>
         </div>
         {% endfor %}
     </div>

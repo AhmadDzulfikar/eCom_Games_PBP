@@ -118,3 +118,10 @@ def edit_product(request, id):
     context = {'form': form}
     return render(request, "edit_product.html", context)
 
+def delete_product(request, id):
+    # Get mood berdasarkan id
+    mood = Product.objects.get(pk = id)
+    # Hapus mood
+    mood.delete()
+    # Kembali ke halaman awal
+    return HttpResponseRedirect(reverse('main:show_main'))
