@@ -183,6 +183,11 @@
             <h3>{{ product.name }}</h3>
             <p class="price">${{ product.price }}</p>
             <p>{{ product.description }}</p>
+            <a href="{% url 'main:edit_product' product.pk %}">
+                <button>
+                    Edit
+                </button>
+            </a>
         </div>
         {% endfor %}
     </div>
