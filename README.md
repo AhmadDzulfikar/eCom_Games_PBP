@@ -590,7 +590,11 @@ Tampilan di laptop:
 ![image](https://github.com/user-attachments/assets/7fb60c9e-380a-443e-a976-97b70c14401a)
 
 Tampilan di iPhone XR:
+
+
 ![image](https://github.com/user-attachments/assets/7e0e7cc4-2f53-450e-9d54-3488abbd9c7c)
+
+Navbar jika di buka:
 ![image](https://github.com/user-attachments/assets/aed18f18-bae2-4672-b1e0-74a2d44c5a81)
 
 
