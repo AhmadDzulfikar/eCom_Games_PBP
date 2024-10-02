@@ -528,6 +528,76 @@ urlpatterns = [
 ```
 
 ### Kustomisasi halaman login, register, dan tambah product semenarik mungkin.
+Hal yang saya lakukan untuk mengedit halaman login, register, dan tambah product adalah menyalin dari tutorial 😁😁😁 dan saya ubah sedikit untuk menyesuaikan dengan tema dari toko saya, yaitu toko game. Saya mengubah warna background dari halaman-halaman tersebut ke warna gelap dan mengubah warna font menjadi hijau terang untuk memberikan kesan neon.
+Login:
+![image](https://github.com/user-attachments/assets/e847b882-ec1e-4f4c-99e2-e02429f9ee28)
+
+Register:
+![image](https://github.com/user-attachments/assets/de070e54-b2bd-41de-a64b-c37dfeaae909)
+
+Tambah Product:
+![image](https://github.com/user-attachments/assets/9de30b92-f35c-401c-978c-e471757dbbf4)
+
+### Jika pada aplikasi belum ada product yang tersimpan, halaman daftar product akan menampilkan gambar dan pesan bahwa belum ada product yang terdaftar.
+Cara saya mengimplementasikan hal ini yaitu menampilkan gambar ketika product kosong adalah dengan if else yang berjalan dengan ketentuan berikut: Jika bukan product maka munculkan image, selain itu maka munculkan card product
+```
+<div class="container">
+    {% if not products %}
+        <div class="flex flex-col items-center justify-center min-h-[24rem] p-6">
+            <img src="{% static 'image/sedih-banget.png' %}" alt="Sad face" class="w-32 h-32 mb-4"/>
+            <p class="text-center text-gray-600 mt-4">Belum ada produk yang tersedia saat ini.</p>
+        </div>
+    {% else %}
+        <div class="product-grid">
+            {% for product in products %}
+                {% include 'card_product.html' %}
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+```
+Jika product kosong maka munculkan image:
+![image](https://github.com/user-attachments/assets/cc37e1cc-6c5c-4345-a020-5260379242f8)
+
+Jika product tersedia:
+![image](https://github.com/user-attachments/assets/189002f8-c8c2-4b33-9381-772f2ae5a05c)
+
+### Untuk setiap card product, buatlah dua buah button untuk mengedit dan menghapus product pada card tersebut!
+Untuk mengimplementasikan hal tersebut saya harus memasukkan button edit dan button delete kedalam card agar setiap card memiliki kedua button tersebut:
+```
+<div class="product-card">
+    <h3>{{ product.name }}</h3>
+    <p class="price">${{ product.price }}</p>
+    <p>{{ product.description }}</p>
+    <a href="{% url 'main:edit_product' product.pk %}">
+        <button class="btn-action">
+            Edit
+        </button>
+    </a>
+    <a href="{% url 'main:delete_product' product.pk %}">
+        <button class="btn-action">
+            Delete
+        </button>
+    </a>
+</div>
+```
+Contoh Implementasi:
+![image](https://github.com/user-attachments/assets/4eeef40f-90a8-49f9-b4b7-00684c7c692f)
+
+### Buatlah navigation bar (navbar) untuk fitur-fitur pada aplikasi yang responsive terhadap perbedaan ukuran device, khususnya mobile dan desktop.
+Saya mencari contoh navigation bar di google dan langsung implementasikan di proyek saya, https://flowbite.com/docs/components/navbar/. Dalam navigation bar yang saya pilih dan saya implementasikan, ini sudah responsive terhadap mobile atau apapun device selain laptop, contoh implementasi:
+Tampilan di laptop:
+![image](https://github.com/user-attachments/assets/7fb60c9e-380a-443e-a976-97b70c14401a)
+
+Tampilan di iPhone XR:
+![image](https://github.com/user-attachments/assets/7e0e7cc4-2f53-450e-9d54-3488abbd9c7c)
+![image](https://github.com/user-attachments/assets/aed18f18-bae2-4672-b1e0-74a2d44c5a81)
+
+
+
+
+
+
 
 
 
