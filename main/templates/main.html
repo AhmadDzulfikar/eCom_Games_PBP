@@ -53,6 +53,16 @@
             margin: 0 auto;
         }
 
+        .button-container {
+        display: flex;
+        gap: 10px; /* Spasi antara tombol Edit dan Delete */
+        margin-top: 20px; /* Memberikan jarak dari deskripsi produk */
+        }
+
+        .button-container a {
+            text-decoration: none; /* Menghapus underline pada link */
+        }
+
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -90,18 +100,23 @@
         }
 
         .btn-action {
-            background-color: #007bff; /* Bright blue for action buttons */
+            width: auto; /* Mengubah ukuran untuk lebih fleksibel */
+            height: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #007bff;
             color: white;
-            padding: 10px 20px;
+            padding: 0 20px;
             border: none;
             border-radius: 8px;
             font-size: 1em;
-            margin: 5px;
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
         .btn-action:hover {
-            background-color: #0056b3; /* Darker blue on hover */
+            background-color: #0056b3;
             transform: translateY(-2px);
         }
 
@@ -118,6 +133,69 @@
             box-shadow: 0 6px 15px rgba(0, 255, 153, 0.4); /* Neon glow effect */
             margin-top: 20px;
         }
+
+        /* Delete button */
+        .btn-delete {
+            width: 150px;
+            height: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            background: #e62222;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+            position: relative; /* Menggunakan posisi absolut pada ikon */
+        }
+
+        .btn-delete, .btn-delete span {
+            transition: 200ms;
+        }
+
+        .btn-delete .text {
+            transform: translateX(35px);
+            color: white;
+            font-weight: bold;
+        }
+
+        .btn-delete .icon {
+            position: absolute;
+            border-left: 1px solid #c41b1b;
+            transform: translateX(110px);
+            height: 40px;
+            width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-delete svg {
+            width: 15px;
+            fill: #eee;
+        }
+
+        .btn-delete:hover {
+            background: #ff3636;
+        }
+
+        .btn-delete:hover .text {
+            color: transparent;
+        }
+
+        .btn-delete:hover .icon {
+            width: 150px;
+            border-left: none;
+            transform: translateX(0);
+        }
+
+        .btn-delete:focus {
+            outline: none;
+        }
+
+        .btn-delete:active .icon svg {
+            transform: scale(0.8);
+        }   
+
 
         .btn-mood:hover {
             background: linear-gradient(90deg, #00ccff, #00ff99); /* Color reverse on hover */
