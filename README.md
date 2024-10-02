@@ -527,17 +527,7 @@ urlpatterns = [
 ]
 ```
 
-
-
-
-
-
-
-
-
-
-
-
+### Kustomisasi halaman login, register, dan tambah product semenarik mungkin.
 
 
 
