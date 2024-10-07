@@ -598,7 +598,9 @@ Navbar jika di buka:
 
 ![image](https://github.com/user-attachments/assets/aed18f18-bae2-4672-b1e0-74a2d44c5a81)
 
-
+# README.MD UNTUK TUGAS KE- 6
+##  Jelaskan manfaat dari penggunaan JavaScript dalam pengembangan aplikasi web!
+Dalam pengembangan aplikasi web, javascript dapat membuat website jauh lebih menarik, interaktif, dan dinamis. Contohnya adalah konten yang bergerak dan memperbarui secara real-time tanpa perlu reload semua halaman website berkali-kali.  Sebagai contoh, Google Maps dengan user experience yang sangat baik. Javascript membuat website menjadi lebih hidup.
 
 
 
