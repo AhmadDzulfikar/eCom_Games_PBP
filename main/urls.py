@@ -27,7 +27,7 @@ urlpatterns = [
 
     path('edit-product/<uuid:id>', edit_product, name='edit_product'),
     path('delete/<uuid:id>', delete_product, name='delete_product'), # sesuaikan dengan nama fungsi yang dibuat
-    path('create-product-ajax', add_product_ajax, name='add_product_ajax'),
+
 
 
 
