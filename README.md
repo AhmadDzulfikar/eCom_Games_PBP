@@ -602,6 +602,18 @@ Navbar jika di buka:
 ##  Jelaskan manfaat dari penggunaan JavaScript dalam pengembangan aplikasi web!
 Dalam pengembangan aplikasi web, javascript dapat membuat website jauh lebih menarik, interaktif, dan dinamis. Contohnya adalah konten yang bergerak dan memperbarui secara real-time tanpa perlu reload semua halaman website berkali-kali.  Sebagai contoh, Google Maps dengan user experience yang sangat baik. Javascript membuat website menjadi lebih hidup.
 
+## Jelaskan fungsi dari penggunaan await ketika kita menggunakan fetch()! Apa yang akan terjadi jika kita tidak menggunakan await?
+Dalam sisi callback, `await` dapat digunakan untuk membuat penanganan asynchronus lebih mudah dibaca dan di-maintain karena menulis kode secara sekuensial. `fetch()` mengirimkan permintaan HTTP ke server dan mengembalikan sebuah promise. Dengan menambahkan await di depan `fetch()`, JavaScript menunggu hingga promise tersebut selesai (baik berhasil maupun gagal) sebelum melanjutkan ke baris kode berikutnya.
+
+Jika await tidak digunakan maka Javascript tidak menunggu respons dari `fetch()` dan dia akan langsung mengeksekusi baris kode selanjutnya. Hal ini menyebabkan data yang diminta mungkin belum tersedia ketika Anda mencoba mengaksesnya, yang dapat menimbulkan error seperti `undefined` atau `Promise {<pending>}`.
+
+##  Mengapa kita perlu menggunakan _decorator_ `csrf_exempt` pada view yang akan digunakan untuk AJAX `POST`?
+Token csrf berguna untuk menjamin kalau permintaan yang kita kirim ke server sudah berasal dari tempat yang sah, karena django memiliki perlindungan CSRF secara default untuk mencegah serangan di mana pengguna yang terotentikasi di sebuah web disalahgunakan untuk mengirim permintaan ke server tanpa sepengetahuan mereka. Decorator `@csrf_exempt` memberi tahu Django untuk menonaktifkan pemeriksaan CSRF pada view tertentu.
+
+##  Pada tutorial PBP minggu ini, pembersihan data input pengguna dilakukan di belakang (backend) juga. Mengapa hal tersebut tidak dilakukan di frontend saja?
+Jika hanya ada validasi di frontend, server tetap rentan terhadap serangan seperti **injection attacks** (misalnya, SQL injection atau XSS). Backend bertanggung jawab untuk memastikan bahwa data yang diterima adalah valid dan sesuai dengan standar aplikasi. Jika pembersihan hanya dilakukan di frontend, tidak ada jaminan bahwa data yang sampai di backend sudah benar-benar bersih dan aman, sehingga bisa terjadi korupsi data di database.
+
+## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
 
 
 
