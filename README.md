@@ -614,6 +614,161 @@ Token csrf berguna untuk menjamin kalau permintaan yang kita kirim ke server sud
 Jika hanya ada validasi di frontend, server tetap rentan terhadap serangan seperti **injection attacks** (misalnya, SQL injection atau XSS). Backend bertanggung jawab untuk memastikan bahwa data yang diterima adalah valid dan sesuai dengan standar aplikasi. Jika pembersihan hanya dilakukan di frontend, tidak ada jaminan bahwa data yang sampai di backend sudah benar-benar bersih dan aman, sehingga bisa terjadi korupsi data di database.
 
 ## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+###  Ubahlah kode cards data mood agar dapat mendukung AJAX GET.
+Agar kita bisa mengubah GET diganti dengan AJAX saya melakukan perubahan di views.py
+```
+@csrf_exempt
+@require_POST
+def add_product_ajax(request):
+    name = strip_tags(request.POST.get("name"))
+    price = request.POST.get("price")
+    description = strip_tags(request.POST.get("description"))
+    user = request.user
+
+    new_product = Product(
+        name=name, price=price, 
+        description=description,
+        user=user
+    )
+    new_product.save()
+
+    return HttpResponse(b"CREATED", status=201)
+```
+Lalu kita melakukan sedikit perubahan di urls.py untuk memnaggil view tersebut
+```
+...
+    path('create-ajax', add_product_ajax, name='add_product_ajax'),
+...
+```
+### Lakukan pengambilan data mood menggunakan AJAX GET. Pastikan bahwa data yang diambil hanyalah data milik pengguna yang logged-in.
+Kita harus menambahkan argument user=user pada halaman `views.py`
+```
+...
+    new_product = Product(
+        name=name, price=price, 
+        description=description,
+        user=user
+    )
+...
+```
+
+### Buatlah sebuah tombol yang membuka sebuah modal dengan form untuk menambahkan mood.
+Di halaman main.html saya menambahkan sebuah fitur tombol yang kalau diklik maka akan membuka modal
+```
+    <button data-modal-target="crudModal" data-modal-toggle="crudModal" class="btn bg-indigo-700 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105" onclick="showModal();">
+        Add New Product by AJAX
+    </button>
+```
+
+Jika button diklik maka akan memunculkan sebuah form html untuk menambah data:
+```
+<div class="container">
+    <div id="product_card"></div>
+    <div id="crudModal" tabindex="-1" aria-hidden="true" class="hidden fixed inset-0 z-50 w-full flex items-center justify-center bg-gray-800 bg-opacity-50 overflow-x-hidden overflow-y-auto transition-opacity duration-300 ease-out">
+            <div id="crudModalContent" class="relative bg-white rounded-lg shadow-lg w-5/6 sm:w-3/4 md:w-1/2 lg:w-1/3 mx-4 sm:mx-0 transform scale-95 opacity-0 transition-transform transition-opacity duration-300 ease-out">
+            <!-- Modal header -->
+            <div class="flex items-center justify-between p-4 border-b rounded-t">
+                <h3 class="text-xl font-semibold text-gray-900">
+                Add New Product
+                </h3>
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" id="closeModalBtn">
+                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <div class="px-6 py-4 space-y-6 form-style">
+                <form id="productForm">
+                    <div class="mb-4">
+                        <label for="name" class="block text-sm font-medium text-[#000000;]">Name</label>
+                        <input type="text" id="name" name="name" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-indigo-700" placeholder="Enter your mood" required style="color: black;">
+                    </div>
+                    <div class="mb-4">
+                        <label for="price" class="block text-sm font-medium text-[#000000;]">Price</label>
+                        <input type="number" id="price" name="price" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-indigo-700" required style="color: black;">
+                    </div>
+                    <div class="mb-4">
+                        <label for="description" class="block text-sm font-medium text-[#000000;]">Description</label>
+                        <textarea id="description" name="description" rows="3" class="mt-1 block w-full h-52 resize-none border border-gray-300 rounded-md p-2 hover:border-indigo-700" placeholder="Describe your feelings" required style="color: black;"></textarea>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2 p-6 border-t border-gray-200 rounded-b justify-center md:justify-end">
+                <button type="button" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg" id="cancelButton">Cancel</button>
+                <button type="submit" id="submitMoodEntry" form="productForm" class="bg-indigo-700 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg">Save</button>
+            </div>
+            </div>
+        </div>
+
+</div>
+```
+
+### Buatlah fungsi view baru untuk menambahkan mood baru ke dalam basis data.
+Saya membuat sebuah function `add_product_ajax` untuk menambah data baru ke dalam basis data:
+```
+@csrf_exempt
+@require_POST
+def add_product_ajax(request):
+    name = strip_tags(request.POST.get("name"))
+    price = request.POST.get("price")
+    description = strip_tags(request.POST.get("description"))
+    user = request.user
+
+    new_product = Product(
+        name=name, price=price, 
+        description=description,
+        user=user
+    )
+    new_product.save()
+
+    return HttpResponse(b"CREATED", status=201)
+```
+
+### Buatlah path /create-ajax/ yang mengarah ke fungsi view yang baru kamu buat.
+Saya menambahkan sebuah path baru di `urls.py`
+```
+    path('create-ajax', add_product_ajax, name='add_product_ajax'),
+```
+
+###  Hubungkan form yang telah kamu buat di dalam modal kamu ke path /create-ajax/.
+fungsi ini akan dihubungkan ke `add_product`
+`addProduct()`
+```
+function addProduct() {
+    fetch("{% url 'main:add_product_ajax' %}", {
+        method: "POST",
+        body: new FormData(document.querySelector('#productForm')),
+    })
+    .then(response => {
+        if (response.ok) {
+            // Refresh the product list
+            refreshProduct();
+
+            // Reset the form
+            document.getElementById("productForm").reset(); 
+
+            // Close the modal
+            hideModal();
+        } else {
+            console.error("Failed to add product");
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
+
+    return false;
+}
+```
+
+### Lakukan refresh pada halaman utama secara asinkronus untuk menampilkan daftar mood terbaru tanpa reload halaman utama secara keseluruhan.
+Kita tidak perlu melakukan refresh setiap kali ada penambahan data, karena data sudah diambil secara async dan akan langsung ditampilkan tanpa perlu refresh.
+
+
 
 
 
